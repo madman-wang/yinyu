@@ -59,6 +59,7 @@
 		9407424DD5274FFB90183FA5 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6630AB8E514C41F198CD366F /* Octicons.ttf */; };
 		0513B53E8C3A4B1A9D6160A2 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 457C5CD3649C4ABB91300585 /* SimpleLineIcons.ttf */; };
 		1EF63DF0E57C472FAC75338A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13BF99C9C8EE49EDA9F8761F /* Zocial.ttf */; };
+		6E9E8998E95B467FA171F857 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2973B86C0B94C6588A51A76 /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -389,6 +390,8 @@
 		6630AB8E514C41F198CD366F /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		457C5CD3649C4ABB91300585 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		13BF99C9C8EE49EDA9F8761F /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3D696BE6E92E4C738DAD203C /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E2973B86C0B94C6588A51A76 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,6 +423,7 @@
 				C3EA53B155144E358D901F35 /* libRCTAgora.a in Frameworks */,
 				4B1EB2A2EDC14032A245FB85 /* libRNGestureHandler.a in Frameworks */,
 				502622D02A814471A86D362B /* libRNVectorIcons.a in Frameworks */,
+				6E9E8998E95B467FA171F857 /* libBVLinearGradient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +618,7 @@
 				00C751D411C541D7A93C39FF /* RCTAgora.xcodeproj */,
 				9FE234D0B8F141A2B503CE3B /* RNGestureHandler.xcodeproj */,
 				DE9A4FAD426E47DFAB869265 /* RNVectorIcons.xcodeproj */,
+				3D696BE6E92E4C738DAD203C /* BVLinearGradient.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1285,12 +1290,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1317,12 +1324,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1348,6 +1357,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1372,6 +1382,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1406,12 +1417,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1446,12 +1459,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1485,12 +1500,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1524,12 +1541,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-agora\ios\RCTAgora/**",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 				);
 			};
 			name = Release;

@@ -1,48 +1,41 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Button, ToastAndroid } from 'react-native';
-import { RtcEngine, AgoraView } from 'react-native-agora';
-import { appid, channelProfile, audioProfile, audioScenario } from './src/constants';
+import React from 'react';
+import {
+  createAppContainer, createMaterialTopTabNavigator,
+} from 'react-navigation';
+import Feed from './src/page/feed';
+import Live from './src/page/live';
+import User from './src/page/user';
 
-export default class App extends Component {
-  state = {
-    clientRole: 1,
-    users: 0,
-  };
-
-  componentWillMount() {
-    const { clientRole } = this.state;
-    RtcEngine.on('userJoined', (data) => {
-    });
-    RtcEngine.on('error', (data) => {
-      ToastAndroid.show(JSON.stringify(data), 5)
-    });
-
-    RtcEngine.init({
-      appid,
-      channelProfile,
-      clientRole,
-      audioProfile,
-      audioScenario,
-    });
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button title="加入房间" onPress={() => {
-          RtcEngine.joinChannel('test');
-        }} />
-        <AgoraView />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+const TabNavigator = createMaterialTopTabNavigator({
+  feed: {
+    screen: Feed,
+  },
+  Live: {
+    screen: Live,
+  },
+  user: {
+    screen: User,
+  },
+}, {
+  initialRouteName: 'Live',
+  tabBarOptions: {
+    // 整个tabs的style
+    style: {
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
+    // 单个tab的style
+    tabStyle: {
+      width: 60,
+    },
+    // label的style
+    labelStyle: {
+      color: '#333',
+    },
+    // 指示器的style
+    indicatorStyle: {
+      backgroundColor: '#333',
+    }
   },
 });
+
+export default createAppContainer(TabNavigator);
