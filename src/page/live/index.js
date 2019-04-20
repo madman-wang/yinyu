@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
   StyleSheet, View, Text, Dimensions,
-  ScrollView,
+  ScrollView, Image,
 } from 'react-native';
 import { Toast } from '@ant-design/react-native';
 import { Avatar } from "react-native-elements";
-import LinearGradient from 'react-native-linear-gradient';
 import { RtcEngine } from 'react-native-agora';
 import { appid, channelProfile, audioProfile, audioScenario } from '../../constants';
+import { tabBarOptions, _while } from '../../constants/style';
 
 const { width, height } = Dimensions.get('window');
 
@@ -15,6 +15,15 @@ export default class Live extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: '推荐',
+      tabBarOptions: {
+        style: tabBarOptions.style,
+        labelStyle: {
+          color: _while,
+        },
+        indicatorStyle: {
+          backgroundColor: _while,
+        }
+      }
     };
   };
 
@@ -82,11 +91,7 @@ export default class Live extends Component {
 
     return (
       <View style={styles.container}>
-        <LinearGradient
-          start={{x: 0, y: 0}}
-          colors={['#66B7F3', '#AB97FF', '#B498FF', '#F863F7', '#FF5EDB']}
-          style={styles.linearGradient}
-        />
+        <Image source={require('../../asset/live-bg.jpg')} style={styles.linearGradient} />
         <View style={styles.header}>
           <Text style={styles.title}>处对象</Text>
           <View style={styles.users}>
@@ -154,7 +159,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,

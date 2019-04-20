@@ -5,6 +5,7 @@ import {
 import Feed from './src/page/feed';
 import Live from './src/page/live';
 import User from './src/page/user';
+import { tabBarOptions } from './src/constants/style';
 
 const TabNavigator = createMaterialTopTabNavigator({
   feed: {
@@ -18,24 +19,8 @@ const TabNavigator = createMaterialTopTabNavigator({
   },
 }, {
   initialRouteName: 'Live',
-  tabBarOptions: {
-    // 整个tabs的style
-    style: {
-      backgroundColor: 'rgba(0, 0, 0, 0)',
-    },
-    // 单个tab的style
-    tabStyle: {
-      width: 60,
-    },
-    // label的style
-    labelStyle: {
-      color: '#333',
-    },
-    // 指示器的style
-    indicatorStyle: {
-      backgroundColor: '#333',
-    }
-  },
+  tabBarOptions,
+  swipeEnabled: false,
 });
 
 export default createAppContainer(TabNavigator);
