@@ -43,7 +43,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AgoraRtcEngine_iOS: 8ad4b58dafed2cec5df03fa1f0ddbdad2c9ff958
   React: 5cb71fb1a15b5ce04794ab49e24b48ebe4c94e65
-  react-native-agora: 0afa2ddd59941021329efa406eb4ced823b7b6f3
+  react-native-agora: 1cfdeca3e6003f4dd8dc097ad6e21f50d9c25f97
   RNGestureHandler: b65d391f4f570178d657b99a16ec99d09b8656b0
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   yoga: 596e61c9b57751d08a22b07aba310dbd3e65ab75
