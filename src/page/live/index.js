@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Button, ToastAndroid, Text, StatusBar, Dimensions,
+  StyleSheet, View, Text, Dimensions,
   ScrollView,
 } from 'react-native';
+import { Toast } from '@ant-design/react-native';
 import { Avatar } from "react-native-elements";
 import LinearGradient from 'react-native-linear-gradient';
-import { RtcEngine, AgoraView } from 'react-native-agora';
+import { RtcEngine } from 'react-native-agora';
 import { appid, channelProfile, audioProfile, audioScenario } from '../../constants';
 
 const { width, height } = Dimensions.get('window');
@@ -29,16 +30,16 @@ export default class Live extends Component {
   componentWillMount() {
     const { clientRole } = this.state;
     RtcEngine.on('userJoined', (data) => {
-      ToastAndroid.show('加入成功', 5);
+      Toast.show('加入成功', 5);
     });
     RtcEngine.on('firstRemoteVideoDecoded', (data) => {
-      ToastAndroid.show('firstRemoteVideoDecoded', 5);
+      Toast.show('firstRemoteVideoDecoded', 5);
     });
     RtcEngine.on('userJoined', (data) => {
-      ToastAndroid.show('userJoined', 5);
+      Toast.show('userJoined', 5);
     });
     RtcEngine.on('userOffline', (data) => {
-      ToastAndroid.show('userOffline', 5);
+      Toast.show('userOffline', 5);
     });
     RtcEngine.on('joinChannelSuccess', (data) => {
       this.setState({
@@ -46,13 +47,13 @@ export default class Live extends Component {
       });
     });
     RtcEngine.on('audioVolumeIndication', (data) => {
-      ToastAndroid.show('audioVolumeIndication', 5);
+      Toast.show('audioVolumeIndication', 5);
     })
     RtcEngine.on('clientRoleChanged', (data) => {
-      ToastAndroid.show('clientRoleChanged', 5);
+      Toast.show('clientRoleChanged', 5);
     })
     RtcEngine.on('error', (data) => {
-      ToastAndroid.show(JSON.stringify(data), 5);
+      Toast.show(JSON.stringify(data), 5);
       if(data.error === 17) {
         RtcEngine.leaveChannel()
       }
@@ -123,6 +124,7 @@ export default class Live extends Component {
                       }}
                       activeOpacity={0.7}
                       onPress={async() => {
+                        Toast.show(3131);
                         await RtcEngine.joinChannel('test');
                         RtcEngine.setClientRole(1);
                         this.setState({
