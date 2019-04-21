@@ -129,12 +129,12 @@ export default class Live extends Component {
                       }}
                       activeOpacity={0.7}
                       onPress={async() => {
-                        Toast.show(3131);
                         await RtcEngine.joinChannel('test');
                         RtcEngine.setClientRole(1);
                         this.setState({
                           message: [].concat(message, ['你已经成为主播']),
-                        })
+                        });
+                        this.scrollView.scrollToEnd();
                       }}
                     />
                   ))
@@ -143,13 +143,15 @@ export default class Live extends Component {
             ))
           }
         </View>
-        <ScrollView contentContainerStyle={styles.messageWrap}>
-          {
-            message.map(item => (
-              <Text>{item}</Text>
-            ))
-          }
-        </ScrollView>
+        <View style={styles.messageWrap}>
+          <ScrollView ref={ref => this.scrollView = ref} style={styles.messageScroll} snapToAlignment="end">
+            {
+              message.map(item => (
+                <Text style={{ color: '#fff', }}>{item}</Text>
+              ))
+            }
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -202,11 +204,14 @@ const styles = StyleSheet.create({
   },
   messageWrap: {
     position: 'absolute',
-    width: 200,
+    width: 240,
     left: 10,
     right: 10,
-    bottom: 20,
+    bottom: 80,
     height: 200,
+  },
+  messageScroll: {
+    flex: 1,
   },
   container: {
     position: 'relative',
