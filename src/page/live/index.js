@@ -4,10 +4,10 @@ import {
   ScrollView, Image,
 } from 'react-native';
 import { Toast } from '@ant-design/react-native';
-import { Avatar } from "react-native-elements";
+import { Avatar, Badge } from "react-native-elements";
 import { RtcEngine } from 'react-native-agora';
 import { appid, channelProfile, audioProfile, audioScenario } from '../../constants';
-import { tabBarOptions, _while } from '../../constants/style';
+import { tabBarOptions, _while, _primary } from '../../constants/style';
 
 const { width, height } = Dimensions.get('window');
 
@@ -152,6 +152,32 @@ export default class Live extends Component {
             }
           </ScrollView>
         </View>
+        <View style={styles.action}>
+          <Avatar
+            rounded
+            icon={{ name: 'settings-voice', type: 'material' }}
+            overlayContainerStyle={styles.actionItem}
+            containerStyle={styles.containerActionItem}
+          />
+          <View>
+            <Avatar
+              rounded
+              icon={{name: 'message1', type: 'antdesign'}}
+              overlayContainerStyle={styles.actionItem}
+              containerStyle={styles.containerActionItem}
+            />
+            <Badge
+              status="error"
+              containerStyle={{ position: 'absolute', top: 6, right: 8 }}
+            />
+          </View>
+          <Avatar
+            rounded
+            icon={{name: 'gift', type: 'antdesign', color: _primary }}
+            overlayContainerStyle={styles.actionItem}
+            containerStyle={styles.containerActionItem}
+          />
+        </View>
       </View>
     );
   }
@@ -212,6 +238,18 @@ const styles = StyleSheet.create({
   },
   messageScroll: {
     flex: 1,
+  },
+  action: {
+    position: 'absolute',
+    right: 10,
+    bottom: 146,
+  },
+  actionItem: {
+    // marginBottom: 6,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  containerActionItem: {
+    marginBottom: 12,
   },
   container: {
     position: 'relative',
