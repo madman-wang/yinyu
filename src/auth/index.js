@@ -23,7 +23,7 @@ export default class SignInScreen extends React.Component {
       },
       // body: qs.stringify({
       //   username: 'test5',
-      //   password: 'rKu1%2F348LvKp0rsVC06eCA%3D%3D',
+      //   password: 'rKu1%2F348LvKp0rsVC06eCA%3D%3D', //password需要使用 CryptoJS 进行aes加密
       //   'grant_type': 'password',
       //   scope: 'server',
       //   code: '311',
