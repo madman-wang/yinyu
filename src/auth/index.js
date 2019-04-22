@@ -12,7 +12,7 @@ export default class SignInScreen extends React.Component {
   onChange = (e) => {
   }
 
-  login = () => {//这个登陆接口偷点特殊，我也不知道为啥要这么写
+  login = () => {//这个登陆接口有点特殊，我也不知道为啥要这么写
     fetch('http://172.254.224.125:9999/auth/oauth/token?username=test5&password=rKu1%2F348LvKp0rsVC06eCA%3D%3D&code=m4dg&grant_type=password', {
       method: 'POST',
       headers: {
