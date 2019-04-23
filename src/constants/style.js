@@ -1,6 +1,7 @@
 export const _while = '#fff';
 export const _black = '#000';
 export const _primary = '#f879d8';
+export const _text = '#bebebe';
 
 export const tabBarOptions = {
   // 整个tabs的style

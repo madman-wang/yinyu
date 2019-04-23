@@ -8,12 +8,14 @@
   },
   "dependencies": {
     "@ant-design/react-native": "^3.1.6",
+    "lodash": "^4.17.11",
     "react": "16.8.3",
     "react-native": "0.59.4",
     "react-native-agora": "^2.3.3-alpha.7",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-linear-gradient": "^2.5.4",
+    "react-native-modal": "^9.0.0",
     "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.8.1"
   },

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   createAppContainer, createMaterialTopTabNavigator, createSwitchNavigator, createStackNavigator,
 } from 'react-navigation';
+import { Provider } from '@ant-design/react-native';
 import Feed from './src/page/feed';
 import Live from './src/page/live';
 import User from './src/page/user';
@@ -27,9 +28,18 @@ const TabNavigator = createMaterialTopTabNavigator({
 const AuthScreen = createStackNavigator({
   screen: Auth,
 });
-
-export default createAppContainer(createSwitchNavigator({
+const AppContainer = createAppContainer(createSwitchNavigator({
   AuthLoading,
   App: TabNavigator,
   Auth: AuthScreen,
-}));
+}))
+
+export default class Main extends React.Component {
+  render() {
+    return (
+      <Provider>
+        <AppContainer />
+      </Provider>
+    );
+  }
+};
