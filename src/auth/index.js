@@ -2,7 +2,6 @@ import React from 'react';
 import { View, AsyncStorage, Fetch } from 'react-native';
 import { Toast } from '@ant-design/react-native';
 import { Input, Button } from 'react-native-elements';
-import qs from 'qs'
 
 
 var net = require('net');//21479e44c8.iask.in 18567  tcp 端口 这里是通过内网穿透的， 真的端口是8360

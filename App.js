@@ -13,12 +13,13 @@ import { tabBarOptions } from './src/constants/style';
 var net = require('net');
 
 const TabNavigator = createMaterialTopTabNavigator({
-  feed: {
-    screen: Feed,
-  },
   Live: {
     screen: Live,
   },
+  feed: {
+    screen: Feed,
+  },
+  
   user: {
     screen: User,
   },
@@ -34,6 +35,7 @@ const AppContainer = createAppContainer(createSwitchNavigator({
   AuthLoading,
   App: TabNavigator,
   Auth: AuthScreen,
+  feed:Feed
 }))
 
 export default class Main extends React.Component {
