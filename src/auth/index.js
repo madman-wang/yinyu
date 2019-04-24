@@ -33,12 +33,12 @@ export default class SignInScreen extends React.Component {
       // }),
     }).then((response) => response.json())
       .then((responseJson) => {
-        // AsyncStorage.setItem('access_token', responseJson.access_token);
-        // AsyncStorage.setItem('token_type', responseJson.token_type);
-        // AsyncStorage.setItem('refresh_token', responseJson.refresh_token);
-        // AsyncStorage.setItem('expires_in', String(responseJson.expires_in));
-        // AsyncStorage.setItem('user_id', String(responseJson.user_id));
-        // AsyncStorage.setItem('username', responseJson.username);
+        AsyncStorage.setItem('access_token', responseJson.access_token);
+        AsyncStorage.setItem('token_type', responseJson.token_type);
+        AsyncStorage.setItem('refresh_token', responseJson.refresh_token);
+        AsyncStorage.setItem('expires_in', String(responseJson.expires_in));
+        AsyncStorage.setItem('user_id', String(responseJson.user_id));
+        AsyncStorage.setItem('username', responseJson.username);
         let client = net.createConnection(18567, "21479e44c8.iask.in", () => {
           client.write(new Buffer(responseJson.user_id + ' www test 111\r\n'));
         });

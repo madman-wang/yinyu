@@ -3,11 +3,14 @@ import {
   StyleSheet, View, Text, Dimensions,
   ScrollView, Image,
 } from 'react-native';
-import { Toast } from '@ant-design/react-native';
-import { Avatar, Badge } from "react-native-elements";
+import { Toast, Carousel, Grid } from '@ant-design/react-native';
+import Modal from 'react-native-modal';
+import { Avatar, Badge, Button } from "react-native-elements";
 import { RtcEngine } from 'react-native-agora';
+import _ from 'lodash';
 import { appid, channelProfile, audioProfile, audioScenario } from '../../constants';
-import { tabBarOptions, _while, _primary } from '../../constants/style';
+import { tabBarOptions, _while, _primary, _text } from '../../constants/style';
+import gift from '../../constants/gift';
 
 const { width, height } = Dimensions.get('window');
 
@@ -33,7 +36,8 @@ export default class Live extends Component {
     message: [
       '欢迎来到连麦互动',
       '你当前的身份为观众,点击上麦可语音连麦',
-    ]
+    ],
+    showGift: false,
   };
 
   componentWillMount() {
@@ -62,7 +66,8 @@ export default class Live extends Component {
       Toast.show('clientRoleChanged', 5);
     })
     RtcEngine.on('error', (data) => {
-      Toast.show(JSON.stringify(data), 5);
+
+      // Toast.show(JSON.stringify(data), 5);
       if(data.error === 17) {
         RtcEngine.leaveChannel()
       }
@@ -78,7 +83,7 @@ export default class Live extends Component {
   }
 
   render() {
-    const { message } = this.state;
+    const { message, showGift } = this.state;
     const users = [
       'https://img.xiangshengclub.com/MTU1NDIwNzg5NSM5NzE=.jpg',
       'https://img.xiangshengclub.com/MTU1NDIxNzE3NSMzNDY=.jpg',
@@ -176,8 +181,49 @@ export default class Live extends Component {
             icon={{name: 'gift', type: 'antdesign', color: _primary }}
             overlayContainerStyle={styles.actionItem}
             containerStyle={styles.containerActionItem}
+            onPress={() => this.setState({ showGift: true })}
           />
         </View>
+
+
+        <Modal
+          isVisible={showGift}
+          backdropOpacity={0}
+          onBackButtonPress={() => this.setState({ showGift: false })}
+          onBackdropPress={() => this.setState({ showGift: false })}
+          style={{
+            justifyContent: "flex-end",
+            margin: 0,
+          }}
+        >
+
+          <View style={styles.gift}>
+            <Carousel>
+              {
+                _.chunk(gift, 8).map((item, index) => (
+                  <View key={index}>
+                    <Grid
+                      data={item}
+                      renderItem={(data) => (
+                        <View style={styles.giftItem}>
+                          <Image
+                            style={styles.giftItemImage}
+                            source={{ uri: data.chat_icon }}
+                          />
+                          <Text style={styles.giftGold}>{data.gold}</Text>
+                          <Text style={styles.giftGold}>{data.name}</Text>
+                        </View>
+                      )}
+                    />
+                  </View>
+                ))
+              }
+            </Carousel>
+            <Button
+              title="赠送"
+            />
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -250,6 +296,24 @@ const styles = StyleSheet.create({
   },
   containerActionItem: {
     marginBottom: 12,
+  },
+  gift: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  giftItem: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  giftItemImage: {
+    width: 50,
+    height: 50,
+  },
+  giftGold: {
+    marginTop: 2,
+    marginBottom: 2,
+    fontSize: 12,
+    color: _text,
   },
   container: {
     position: 'relative',
