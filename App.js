@@ -47,6 +47,8 @@ const AppContainer = createAppContainer(createSwitchNavigator({
 }))
 
 export default class Main extends React.Component {
+  componentWillMount() {
+  }
   render() {
     return (
       <Provider>

@@ -2,9 +2,8 @@ import React from 'react';
 import { View, AsyncStorage, Fetch } from 'react-native';
 import { Toast } from '@ant-design/react-native';
 import { Input, Button } from 'react-native-elements';
+import Wego from '../wego'
 
-
-var net = require('net');//21479e44c8.iask.in 18567  tcp 端口 这里是通过内网穿透的， 真的端口是8360
 
 export default class SignInScreen extends React.Component {
   static navigationOptions = {
@@ -34,32 +33,16 @@ export default class SignInScreen extends React.Component {
       .then((responseJson) => {
         AsyncStorage.setItem('access_token', responseJson.access_token);
         AsyncStorage.setItem('token_type', responseJson.token_type);
+        AsyncStorage.setItem('wego_user_id', '1');
         AsyncStorage.setItem('refresh_token', responseJson.refresh_token);
         AsyncStorage.setItem('expires_in', String(responseJson.expires_in));
         AsyncStorage.setItem('user_id', String(responseJson.user_id));
         AsyncStorage.setItem('username', responseJson.username);
-        let client = net.createConnection(18567, "21479e44c8.iask.in", () => {
-          client.write(new Buffer(responseJson.user_id + ' www test 111\r\n'));
-        });
-
-        client.on('data', (data) => {
-          // alert('tcp data:' + JSON.stringify(data))
-        });
-
-        client.on('error', (error) => {
-          alert('tcp error')
-        });
-
-        client.on('close', () => {
-          alert('tcp close')
-        });
-
-        this.timer = setInterval(() => {
-          client.write(new Buffer('1\r\n'), null, null);
-        }, 5000);
+        Wego.login('1');
       }).catch((e) => {
         //Toast.show(JSON.stringify(e));
       });
+    this.props.navigation.navigate("Chat")
   }
 
   render() {
