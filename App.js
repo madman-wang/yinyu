@@ -3,6 +3,8 @@ import {
   createAppContainer, createMaterialTopTabNavigator, createSwitchNavigator, createStackNavigator,
 } from 'react-navigation';
 import { Provider } from '@ant-design/react-native';
+import Message from './src/page/message';
+import Chat from './src/page/chat';
 import Feed from './src/page/feed';
 import Live from './src/page/live';
 import User from './src/page/user';
@@ -13,18 +15,24 @@ import { tabBarOptions } from './src/constants/style';
 var net = require('net');
 
 const TabNavigator = createMaterialTopTabNavigator({
+  Chat: {//不知道怎么跳转
+    screen: Chat,
+  },
+  Message: {
+    screen: Message,
+  },
   Live: {
     screen: Live,
   },
   feed: {
     screen: Feed,
   },
-  
+
   user: {
     screen: User,
   },
 }, {
-    initialRouteName: 'Live',
+    initialRouteName: 'Chat',
     tabBarOptions,
     swipeEnabled: false,
   });
@@ -35,7 +43,7 @@ const AppContainer = createAppContainer(createSwitchNavigator({
   AuthLoading,
   App: TabNavigator,
   Auth: AuthScreen,
-  feed:Feed
+  Chat: Chat
 }))
 
 export default class Main extends React.Component {
