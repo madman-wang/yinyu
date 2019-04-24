@@ -3,6 +3,7 @@ import {
   createAppContainer, createMaterialTopTabNavigator, createSwitchNavigator, createStackNavigator,
 } from 'react-navigation';
 import { Provider } from '@ant-design/react-native';
+import { ThemeProvider } from 'react-native-elements';
 import Message from './src/page/message';
 import Chat from './src/page/chat';
 import Feed from './src/page/feed';
@@ -10,12 +11,12 @@ import Live from './src/page/live';
 import User from './src/page/user';
 import Auth from './src/auth';
 import AuthLoading from './src/auth/loading';
-import { tabBarOptions } from './src/constants/style';
+import { tabBarOptions, elementTheme } from './src/constants/style';
 
 var net = require('net');
 
 const TabNavigator = createMaterialTopTabNavigator({
-  Chat: {//不知道怎么跳转
+  Chat: {
     screen: Chat,
   },
   Message: {
@@ -27,12 +28,11 @@ const TabNavigator = createMaterialTopTabNavigator({
   feed: {
     screen: Feed,
   },
-
   user: {
     screen: User,
   },
 }, {
-    initialRouteName: 'Chat',
+    initialRouteName: 'Live',
     tabBarOptions,
     swipeEnabled: false,
   });
@@ -52,7 +52,9 @@ export default class Main extends React.Component {
   render() {
     return (
       <Provider>
-        <AppContainer />
+        <ThemeProvider theme={elementTheme}>
+          <AppContainer />
+        </ThemeProvider>
       </Provider>
     );
   }

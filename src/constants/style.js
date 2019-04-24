@@ -1,6 +1,6 @@
 export const _while = '#fff';
 export const _black = '#000';
-export const _primary = '#f879d8';
+export const _primary = '#fd6693';
 export const _text = '#bebebe';
 
 export const tabBarOptions = {
@@ -20,5 +20,11 @@ export const tabBarOptions = {
   // 指示器的style
   indicatorStyle: {
     backgroundColor: '#333',
+  }
+};
+
+export const elementTheme = {
+  colors: {
+    primary: _primary,
   }
 };

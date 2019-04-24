@@ -3,9 +3,9 @@ import {
   StyleSheet, View, Text, Dimensions,
   ScrollView, Image,
 } from 'react-native';
-import { Toast, Carousel, Grid } from '@ant-design/react-native';
+import { Toast, Carousel, Grid, Flex } from '@ant-design/react-native';
 import Modal from 'react-native-modal';
-import { Avatar, Badge, Button } from "react-native-elements";
+import { Avatar, Badge, Button, Icon, Divider } from "react-native-elements";
 import { RtcEngine } from 'react-native-agora';
 import _ from 'lodash';
 import { appid, channelProfile, audioProfile, audioScenario } from '../../constants';
@@ -38,6 +38,9 @@ export default class Live extends Component {
       '你当前的身份为观众,点击上麦可语音连麦',
     ],
     showGift: false,
+    selectedGiftId: '',
+    selectedGiftUsers: [],
+    givAll: false,
   };
 
   componentWillMount() {
@@ -82,8 +85,19 @@ export default class Live extends Component {
     });
   }
 
+  // 赠送
+  giving = () => {
+    const { selectedGiftId, selectedGiftUsers } = this.state;
+    if (!selectedGiftId) {
+      return Toast.show('要选择送出的礼物哦');
+    }
+    if (!selectedGiftUsers.length) {
+      return Toast.show('要选择送出的用户哦');
+    }
+  }
+
   render() {
-    const { message, showGift } = this.state;
+    const { message, showGift, selectedGiftId, givAll } = this.state;
     const users = [
       'https://img.xiangshengclub.com/MTU1NDIwNzg5NSM5NzE=.jpg',
       'https://img.xiangshengclub.com/MTU1NDIxNzE3NSMzNDY=.jpg',
@@ -185,7 +199,6 @@ export default class Live extends Component {
           />
         </View>
 
-
         <Modal
           isVisible={showGift}
           backdropOpacity={0}
@@ -196,21 +209,69 @@ export default class Live extends Component {
             margin: 0,
           }}
         >
-
           <View style={styles.gift}>
+            <Flex style={styles.giftUserWrap}>
+              <Text style={styles.giftUserText}>送给</Text>
+              <ScrollView
+                horizontal
+                style={{
+                  flex: 1,
+                }}
+              >
+                {
+                  [].concat(users, users, users, users, users, users).map(user => (
+                    <Avatar
+                      key={user}
+                      avatarStyle={styles.user}
+                      containerStyle={styles.userWrap}
+                      size="small"
+                      rounded
+                      source={{
+                        uri: user,
+                      }}
+                      activeOpacity={0.7}
+                    />
+                  ))
+                }
+              </ScrollView>
+              <Text style={{
+                padding: 6,
+                fontSize: 12,
+                color: _text,
+                borderRadius: 16,
+                borderWidth: 1,
+                borderStyle: 'solid',
+                borderColor: givAll ? _while : _text,
+                backgroundColor: givAll ? _primary : 'rgba(0,0,0,0)',
+              }}>全麦</Text>
+            </Flex>
+            <Divider style={{ backgroundColor: _text }} />
             <Carousel>
               {
                 _.chunk(gift, 8).map((item, index) => (
                   <View key={index}>
                     <Grid
                       data={item}
+                      hasLine={false}
+                      onPress={(el) => this.setState({ selectedGiftId: el.id })}
                       renderItem={(data) => (
-                        <View style={styles.giftItem}>
+                        <View
+                          style={{
+                          flex: 1,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          borderWidth: selectedGiftId === data.id ? 1 : 0,
+                          borderStyle: 'solid',
+                          borderColor: _primary,
+                        }}>
                           <Image
                             style={styles.giftItemImage}
                             source={{ uri: data.chat_icon }}
                           />
-                          <Text style={styles.giftGold}>{data.gold}</Text>
+                          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Icon iconStyle={{ marginRight: 4 }} size={14} color={_primary} type="ionicon" name="md-heart" />
+                            <Text style={styles.giftGold}>{data.gold}</Text>
+                          </View>
                           <Text style={styles.giftGold}>{data.name}</Text>
                         </View>
                       )}
@@ -221,6 +282,7 @@ export default class Live extends Component {
             </Carousel>
             <Button
               title="赠送"
+              onPress={this.giving}
             />
           </View>
         </Modal>
@@ -300,20 +362,21 @@ const styles = StyleSheet.create({
   gift: {
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
-  giftItem: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   giftItemImage: {
-    width: 50,
-    height: 50,
+    width: 36,
+    height: 36,
   },
   giftGold: {
     marginTop: 2,
     marginBottom: 2,
     fontSize: 12,
     color: _text,
+  },
+  giftUserWrap: {
+    padding: 8,
+  },
+  giftUserText: {
+    color: _while,
   },
   container: {
     position: 'relative',
