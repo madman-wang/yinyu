@@ -9,6 +9,8 @@ import Auth from './src/auth';
 import AuthLoading from './src/auth/loading';
 import { tabBarOptions } from './src/constants/style';
 
+var net = require('net');
+
 const TabNavigator = createMaterialTopTabNavigator({
   feed: {
     screen: Feed,
@@ -27,6 +29,7 @@ const TabNavigator = createMaterialTopTabNavigator({
 const AuthScreen = createStackNavigator({
   screen: Auth,
 });
+
 
 export default createAppContainer(createSwitchNavigator({
   AuthLoading,
