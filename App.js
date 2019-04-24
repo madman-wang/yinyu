@@ -4,6 +4,8 @@ import {
 } from 'react-navigation';
 import { Provider } from '@ant-design/react-native';
 import { ThemeProvider } from 'react-native-elements';
+import Message from './src/page/message';
+import Chat from './src/page/chat';
 import Feed from './src/page/feed';
 import Live from './src/page/live';
 import User from './src/page/user';
@@ -14,11 +16,17 @@ import { tabBarOptions, elementTheme } from './src/constants/style';
 var net = require('net');
 
 const TabNavigator = createMaterialTopTabNavigator({
-  feed: {
-    screen: Feed,
+  Chat: {
+    screen: Chat,
+  },
+  Message: {
+    screen: Message,
   },
   Live: {
     screen: Live,
+  },
+  feed: {
+    screen: Feed,
   },
   user: {
     screen: User,
@@ -35,6 +43,7 @@ const AppContainer = createAppContainer(createSwitchNavigator({
   AuthLoading,
   App: TabNavigator,
   Auth: AuthScreen,
+  Chat: Chat
 }))
 
 export default class Main extends React.Component {
