@@ -69,7 +69,6 @@ export default class Live extends Component {
       Toast.show('clientRoleChanged', 5);
     })
     RtcEngine.on('error', (data) => {
-
       // Toast.show(JSON.stringify(data), 5);
       if(data.error === 17) {
         RtcEngine.leaveChannel()

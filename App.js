@@ -2,7 +2,7 @@ import React from 'react';
 import {
   createAppContainer, createMaterialTopTabNavigator, createSwitchNavigator, createStackNavigator,
 } from 'react-navigation';
-import { Provider } from '@ant-design/react-native';
+import {Provider, Toast} from '@ant-design/react-native';
 import { ThemeProvider } from 'react-native-elements';
 import Message from './src/page/message';
 import Chat from './src/page/chat';
@@ -12,8 +12,15 @@ import User from './src/page/user';
 import Auth from './src/auth';
 import AuthLoading from './src/auth/loading';
 import { tabBarOptions, elementTheme } from './src/constants/style';
+import axios from 'axios';
 
-var net = require('net');
+axios.interceptors.response.use((response) => {
+  return response;
+}, (error) => {
+  const message = error.response.data.message;
+  Toast.show(message);
+  return Promise.reject(message);
+});
 
 const TabNavigator = createMaterialTopTabNavigator({
   Chat: {
