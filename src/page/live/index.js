@@ -219,7 +219,7 @@ export default class Live extends Component {
                 }}
               >
                 {
-                  [].concat(users, users, users, users, users, users).map(user => (
+                  users.map(user => (
                     <Avatar
                       key={user}
                       avatarStyle={styles.user}
