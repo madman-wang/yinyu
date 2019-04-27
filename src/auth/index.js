@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, AsyncStorage } from 'react-native';
-import { Toast } from '@ant-design/react-native';
-import { Input, Button } from 'react-native-elements';
+import { Toast, InputItem } from '@ant-design/react-native';
+import { Button } from 'react-native-elements';
 import Wego from '../wego';
 import axios from 'axios';
 
@@ -59,24 +59,32 @@ export default class SignInScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        <Input
+      <View style={{
+        margin: 20,
+      }}>
+        <InputItem
           placeholder='手机号'
           onChangeText={(value) => this.setState({ username: value })}
-          keyboardType="numeric"
-          maxLength={maxLength}
+          type='phone'
         />
-        <Input
+        <InputItem
+          type='password'
           placeholder='密码'
-           onChangeText={(value) => this.setState({ password: value })}
+          onChangeText={(value) => this.setState({ password: value })}
         />
-        <Input
+        <InputItem
           placeholder='验证码'
-           onChangeText={(value) => this.setState({ code: value })}
+          type='number'
+          onChangeText={(value) => this.setState({ code: value })}
         />
         <Button
+          containerStyle={{
+            marginTop: 40,
+          }}
           title="登录"
           onPress={this.login}
+          size={60}
+          disabled={this.state.username.length !== maxLength}
         />
       </View>
     );

@@ -2,6 +2,8 @@ export const _while = '#fff';
 export const _black = '#000';
 export const _primary = '#fd6693';
 export const _text = '#bebebe';
+export const _fontSize = 16;
+export const _borderColor = '#f8f8f8';
 
 export const tabBarOptions = {
   // 整个tabs的style
@@ -26,5 +28,10 @@ export const tabBarOptions = {
 export const elementTheme = {
   colors: {
     primary: _primary,
+  },
+  Input: {
+    inputContainerStyle: {
+      borderBottomColor: _borderColor,
+    },
   }
 };

@@ -11,7 +11,7 @@ import Live from './src/page/live';
 import User from './src/page/user';
 import Auth from './src/auth';
 import AuthLoading from './src/auth/loading';
-import { tabBarOptions, elementTheme } from './src/constants/style';
+import { tabBarOptions, elementTheme, _fontSize, _borderColor } from './src/constants/style';
 import axios from 'axios';
 
 axios.interceptors.response.use((response) => {
@@ -45,6 +45,21 @@ const TabNavigator = createMaterialTopTabNavigator({
   });
 const AuthScreen = createStackNavigator({
   screen: Auth,
+}, {
+  defaultNavigationOptions: {
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomColor: _borderColor,
+      borderBottomStyle: 'solid',
+      borderBottomWidth: 1,
+    },
+    headerTitleStyle: {
+      flex: 1,
+      textAlign: 'center',
+      fontSize: _fontSize,
+    },
+  }
 });
 const AppContainer = createAppContainer(createSwitchNavigator({
   AuthLoading,
