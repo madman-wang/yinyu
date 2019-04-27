@@ -2,6 +2,8 @@ import React from 'react';
 import { ActivityIndicator, View, AsyncStorage } from 'react-native';
 import { _primary } from '../constants/style';
 
+const AV = require('leancloud-storage');
+
 export default class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -9,8 +11,8 @@ export default class AuthLoadingScreen extends React.Component {
   }
 
   _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('access_token');
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+    const currentUser = AV.User.currentAsync();
+    this.props.navigation.navigate(currentUser ? 'App' : 'Auth');
   };
 
   render() {

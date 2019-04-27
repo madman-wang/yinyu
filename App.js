@@ -14,6 +14,20 @@ import AuthLoading from './src/auth/loading';
 import { tabBarOptions, elementTheme, _fontSize, _borderColor } from './src/constants/style';
 import axios from 'axios';
 
+const AV = require('leancloud-storage');
+const { Realtime } = require('leancloud-realtime');
+const APP_ID = 'GhmpwDf9XQ7jWQImfyiJb4dP-gzGzoHsz';
+const APP_KEY = 'OFXI74J6oHXXCF0rt9B7Kn91';
+
+AV.init({
+  appId: APP_ID,
+  appKey: APP_KEY
+});
+new Realtime({
+  appId: APP_ID,
+  appKey: APP_KEY,
+});
+
 axios.interceptors.response.use((response) => {
   return response;
 }, (error) => {
