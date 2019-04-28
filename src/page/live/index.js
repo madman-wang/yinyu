@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {
   StyleSheet, View, Text, Dimensions,
   ScrollView, Image,
+  PermissionsAndroid,
 } from 'react-native';
 import { Toast, Carousel, Grid, Flex } from '@ant-design/react-native';
 import Modal from 'react-native-modal';
 import { Avatar, Badge, Button, Icon, Divider } from "react-native-elements";
 import { RtcEngine } from 'react-native-agora';
 import _ from 'lodash';
-import { appid, channelProfile, audioProfile, audioScenario } from '../../constants';
+import { appid, channelProfile, audioProfile, audioScenario, defaultClient, hostClient } from '../../constants';
 import { tabBarOptions, _while, _primary, _text } from '../../constants/style';
 import gift from '../../constants/gift';
 
@@ -31,7 +32,7 @@ export default class Live extends Component {
   };
 
   state = {
-    clientRole: 1,
+    clientRole: defaultClient,
     users: 0,
     message: [
       '欢迎来到连麦互动',
@@ -69,8 +70,8 @@ export default class Live extends Component {
       Toast.show('clientRoleChanged', 5);
     })
     RtcEngine.on('error', (data) => {
-      // Toast.show(JSON.stringify(data), 5);
       if(data.error === 17) {
+        Toast.show('你已经在麦上了');
         RtcEngine.leaveChannel()
       }
     });
@@ -82,6 +83,23 @@ export default class Live extends Component {
       audioProfile,
       audioScenario,
     });
+  }
+
+  async componentDidMount() {
+    await PermissionsAndroid.requestMultiple([
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO
+    ]);
+    await RtcEngine.joinChannel('test');
+  }
+
+  // 上麦
+  up = async() => {
+    try {
+      await RtcEngine.setClientRole(hostClient);
+    } catch(e) {
+      Toast.show('上麦失败，请打开录音权限');
+    }
   }
 
   // 赠送
@@ -146,14 +164,7 @@ export default class Live extends Component {
                         uri: index === 0 ? users[i] : '',
                       }}
                       activeOpacity={0.7}
-                      onPress={async() => {
-                        await RtcEngine.joinChannel('test');
-                        RtcEngine.setClientRole(1);
-                        this.setState({
-                          message: [].concat(message, ['你已经成为主播']),
-                        });
-                        this.scrollView.scrollToEnd();
-                      }}
+                      onPress={this.up}
                     />
                   ))
                 }
