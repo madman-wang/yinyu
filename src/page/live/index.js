@@ -14,6 +14,7 @@ import { tabBarOptions, _while, _primary, _text } from '../../constants/style';
 import gift from '../../constants/gift';
 
 const { width, height } = Dimensions.get('window');
+const { Event, TextMessage, Conversation } = require('leancloud-realtime');
 
 export default class Live extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -83,6 +84,31 @@ export default class Live extends Component {
       audioProfile,
       audioScenario,
     });
+
+    global.realtime.createIMClient(`${new Date().getTime()}`).then(client => {
+      this.setState({
+        message: this.state.message.concat(['链接聊天服务器成功']),
+      })
+      client.on(Event.MESSAGE, function(message) {
+        Toast.show('3131', 0);
+      });
+
+      client.getQuery({ name:'天南海北聊天室' }).find((conversations) => {
+        return conversations[0];
+      }).then((room) => {
+        Toast.show(typeof room.join)
+      })
+
+      // client.createChatRoom({
+      //   name: 'Hello Kitty PK 加菲猫',
+      // }).then((chatRoom) => {
+      //   this.setState({
+      //     message: this.state.message.concat(['创建房间成功']),
+      //   })
+      //
+      //   // chatRoom.send(new TextMessage('@Tom，我在 Jerry 家，你跟 Harry 什么时候过来？还有 William 和你在一起么？'));
+      // });
+    });
   }
 
   async componentDidMount() {
@@ -90,7 +116,7 @@ export default class Live extends Component {
       PermissionsAndroid.PERMISSIONS.CAMERA,
       PermissionsAndroid.PERMISSIONS.RECORD_AUDIO
     ]);
-    await RtcEngine.joinChannel('test');
+    // await RtcEngine.joinChannel('test');
   }
 
   // 上麦

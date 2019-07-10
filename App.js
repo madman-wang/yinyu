@@ -23,7 +23,7 @@ AV.init({
   appId: APP_ID,
   appKey: APP_KEY
 });
-new Realtime({
+global.realtime = new Realtime({
   appId: APP_ID,
   appKey: APP_KEY,
 });
@@ -83,8 +83,6 @@ const AppContainer = createAppContainer(createSwitchNavigator({
 }))
 
 export default class Main extends React.Component {
-  componentWillMount() {
-  }
   render() {
     return (
       <Provider>
