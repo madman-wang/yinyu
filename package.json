@@ -12,7 +12,7 @@
     "axios": "^0.18.0",
     "leancloud-realtime": "^4.3.0",
     "leancloud-storage": "^3.13.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "react": "16.8.3",
     "react-native": "0.59.4",
     "react-native-agora": "^2.3.3-alpha.7",
